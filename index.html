@@ -2040,6 +2040,46 @@ function darshHandleText(text) {
 
   setTimeout(() => {
     document.getElementById('darshTypingText')?.remove();
+
+    // Generic darshan intent (no specific temple matched) — show two-section chip response
+    if (!templeType && isDarshanRequest(lower)) {
+      const msgEl = document.createElement('div');
+      msgEl.className = 'pcal-bot-row';
+      msgEl.style.animation = 'fadeDown 0.3s ease both';
+      msgEl.innerHTML = `<div class="pcal-bot-content"><p style="font-family:'JioType',sans-serif;font-size:16px;font-weight:400;color:#0c0d10;line-height:1.3;margin:0">Sure. Here are a few temples where you can experience live darshan online.</p></div>`;
+      msgs.appendChild(msgEl);
+
+      const liveEl = document.createElement('div');
+      liveEl.style.animation = 'fadeDown 0.32s ease both';
+      liveEl.innerHTML = `
+        <p style="font-family:'JioType',sans-serif;font-size:16px;font-weight:700;color:var(--text-high);line-height:1.1;display:flex;align-items:center;gap:7px;margin:10px 0 8px">
+          <span style="width:10px;height:10px;border-radius:50%;background:#fa2f40;display:inline-block;flex-shrink:0;box-shadow:0 0 0 3px rgba(250,47,64,0.18)"></span>
+          Currently Live
+        </p>
+        <div class="pcal-chips-row">
+          <button class="pcal-chip" onclick="darshChipTap(this,'shirdi')">Shirdi Sai Baba</button>
+          <button class="pcal-chip" onclick="darshChipTap(this,'vaishno')">Maa Vaishno Devi</button>
+          <button class="pcal-chip" onclick="darshChipTap(this,'tirupati')">Tirupathi Balaji</button>
+          <button class="pcal-chip" onclick="darshChipTap(this,'kashi')">Kashi Vishwanath</button>
+          <button class="pcal-chip" onclick="darshChipTap(this,'siddhivinayak')">Siddhivinayak</button>
+        </div>`;
+      msgs.appendChild(liveEl);
+
+      const exploreEl = document.createElement('div');
+      exploreEl.style.animation = 'fadeDown 0.36s ease both';
+      exploreEl.innerHTML = `
+        <p style="font-family:'JioType',sans-serif;font-size:16px;font-weight:400;color:var(--text-high);line-height:1.3;margin:14px 0 8px">A few other temples you can explore.</p>
+        <div class="pcal-chips-row">
+          <button class="pcal-chip" onclick="darshChipTap(this,'meenakshi')">Meenakshi Amman</button>
+          <button class="pcal-chip" onclick="darshChipTap(this,'kashi')">Kashi Vishwanath</button>
+          <button class="pcal-chip" onclick="darshChipTap(this,'somnath')">Somnath Temple</button>
+          <button class="pcal-chip" onclick="darshChipTap(this,'dwarkadhish')">Dwarkadhish Temple</button>
+        </div>`;
+      msgs.appendChild(exploreEl);
+      msgs.scrollTop = msgs.scrollHeight;
+      return;
+    }
+
     const responseEl = document.createElement('div');
     responseEl.className = 'pcal-bot-row';
     responseEl.style.animation = 'fadeDown 0.3s ease both';
