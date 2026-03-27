@@ -4275,7 +4275,7 @@ function renderFestivalCard(now) {
     </div>
     <span class="fest-banner-days-badge ${badgeClass}">${badgeText}</span>
     <div class="fest-banner-body" style="background:#fff">
-      <div class="fest-banner-name">${pFest.name}</div>
+      <div class="fest-banner-name">${pFest.emoji} ${pFest.name}</div>
       <div class="fest-banner-date">${DAYS_EN[pDate.getDay()]}, ${pFd} ${MO_NAMES[pFm - 1]} ${pFy}</div>
       <div class="fest-banner-desc">${pFest.desc}</div>
       <button class="fest-read-more" onclick="openFestivalDetail('${primary.dateKey}')">
@@ -4306,7 +4306,7 @@ function renderFestivalCard(now) {
       cardEl.setAttribute('onclick', `openFestivalDetail('${dateKey}')`);
       cardEl.innerHTML = `
         <div class="widget-status-top">
-          <div class="widget-status-title">${fest.name}</div>
+          <div class="widget-status-title">${fest.emoji} ${fest.name}</div>
           <div class="widget-status-date-badge"><span>${dateStr}</span></div>
         </div>
         <div class="widget-status-bullets">
@@ -5790,7 +5790,7 @@ function buildUpcomingFestivals() {
     return `
       <div class="widget-status-card" style="animation-delay:${i * 0.07}s" onclick="openFestivalDetail('${f.key}')">
         <div class="widget-status-top">
-          <div class="widget-status-title">${f.name}</div>
+          <div class="widget-status-title">${f.emoji} ${f.name}</div>
           <div class="widget-status-date-badge"><span>${dateStr}</span></div>
         </div>
         <div class="widget-status-bullets">
